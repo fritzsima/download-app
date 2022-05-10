@@ -21,8 +21,11 @@ class LocalConfig(Config):
 
 
 class ProductionConfig(Config):
+    ENV: str = "production"
     DEBUG: str = False
-    pass
+    APP_HOST = os.getenv("APP_HOST", "0.0.0.0")
+    APP_PORT = os.getenv("APP_PORT", 8000)
+    STATIC_DIR = os.getenv("STATIC_DIR", './static/')
 
 
 def get_config():
