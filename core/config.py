@@ -10,6 +10,7 @@ class Config(BaseSettings):
     APP_PORT: int = 8000
     STATIC_HOST: str = ""
     STATIC_DIR: str = './static/'
+    BASE_URL: str = f'http://{APP_HOST}:{APP_PORT}'
 
 
 class DevelopmentConfig(Config):
@@ -24,8 +25,9 @@ class ProductionConfig(Config):
     ENV: str = "production"
     DEBUG: str = False
     APP_HOST = os.getenv("APP_HOST", "0.0.0.0")
-    APP_PORT = os.getenv("APP_PORT", 8000)
+    APP_PORT = os.getenv("APP_PORT", 80)
     STATIC_DIR = os.getenv("STATIC_DIR", './static/')
+    BASE_URL: str = f'https://{APP_HOST}'
 
 
 def get_config():

@@ -35,7 +35,7 @@ def create_archive(request: CreateArchiveRequestSchema, background_tasks: Backgr
 def get_archive_status(filename):
     archived_file = f'{config.STATIC_DIR}{filename}.zip'
     if exists(archived_file):
-        archived_url = f'http://{config.APP_HOST}:{config.APP_PORT}/archive/get/{filename}.zip'
+        archived_url = f'{config.BASE_URL}/archive/get/{filename}.zip'
         return {"status": "completed", "url": archived_url}
     else:
         return {"status": "in-progress"}
